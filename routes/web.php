@@ -21,13 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pegawai',[PegawaiController::class,'index']);
-Route::get('/pegawai/create',[PegawaiController::class,'create']);
-Route::post('/pegawai/store',[PegawaiController::class,'store']);
-Route::get('/pegawai/{id}/edit',[PegawaiController::class,'edit']);
-Route::put('/pegawai/{id}',[PegawaiController::class,'update']);
-Route::delete('/pegawai/{id}',[PegawaiController::class,'destroy']);
-
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
@@ -38,4 +31,12 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index']);
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/pegawai',[PegawaiController::class,'index']);
+    Route::get('/pegawai/create',[PegawaiController::class,'create']);
+    Route::post('/pegawai/store',[PegawaiController::class,'store']);
+    Route::get('/pegawai/{id}/edit',[PegawaiController::class,'edit']);
+    Route::put('/pegawai/{id}',[PegawaiController::class,'update']);
+    Route::delete('/pegawai/{id}',[PegawaiController::class,'destroy']);
+
 });
